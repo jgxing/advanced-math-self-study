@@ -1,0 +1,23 @@
+# WorkBuddy 项目数据（本地记忆/会话缓存，不上传）
+.workbuddy/
+
+# 凭据类文件，绝不提交
+github_pat.txt
+*.pat
+.env
+.env.*
+*.pem
+*.key
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# 临时验证文件
+_selfcheck.html
+_latexcheck.html
+*.log
+*.tmp
