@@ -10,21 +10,42 @@ const plain = s => String(s == null ? '' : s)
   .replace(/\\\(|\\\)|\\\[|\\\]/g, ' ').replace(/\\d?frac\{([^{}]*)\}\{([^{}]*)\}/g, '$1/$2')
   .replace(/\\[a-zA-Z]+/g, ' ').replace(/[{} _^$]/g, ' ').replace(/<[^>]+>/g, ' ')
   .replace(/\s+/g, ' ').trim();
+/* 公式里的 < > 若原样进入 innerHTML，会被当成 HTML 标签吞掉（如 \(x_1<x_2\)、
+   \(|x|<R\)），使定界符不闭合、整段公式露出源码。只实体化 TeX 定界符区间内的
+   尖括号，区间外的 <strong>/<br> 等排版标签保持可用。 */
+window.safeMathHtml = html => String(html == null ? '' : html)
+  .replace(/\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/g,
+    seg => seg.replace(/</g, '&lt;').replace(/>/g, '&gt;'));
 
-/* ---------- 数学公式排版 ---------- */
-let mathReady = false, mathFallback = false, pendingRoot = null;
+/* ---------- 数学公式排版 ----------
+   main 是常驻 DOM 节点，每次路由切换只替换 innerHTML。因此绝不能用 data-* 标记
+   记录「已排版」——那样后续视图会全部跳过排版、直接露出 LaTeX 源码。
+   这里改为：每次视图重绘都排一次，并用串行队列避免并发调用 typesetPromise。 */
+let mathReady = false, mathFallback = false;
+let mathQueue = Promise.resolve();
+function queueTypeset(root) {
+  mathQueue = mathQueue.catch(() => {}).then(() => {
+    if (!window.MathJax || !MathJax.typesetPromise) return;
+    // 局部节点若已被后续重绘移除，退回整页兜底，避免漏排
+    const target = (root && root.isConnected) ? [root] : [document.body];
+    return MathJax.typesetPromise(target);
+  }).catch(e => console.warn('[mathjax]', e));
+}
 window.addEventListener('mathjax-ready', () => {
   mathReady = true;
-  if (pendingRoot && pendingRoot.isConnected) window.typesetMath(pendingRoot, true);
-  pendingRoot = null;
+  if (mathFallback) {
+    // 之前因加载超时降级成纯文本，MathJax 恢复后重建当前视图，把公式换回来
+    mathFallback = false;
+    try { render(); } catch (e) { queueTypeset(document.body); }
+  } else {
+    queueTypeset(document.body); // 整页兜底，覆盖 ready 之前渲染的内容
+  }
 });
-window.typesetMath = function (root, force) {
+window.typesetMath = function (root) {
   root = root || document.body;
   if (mathFallback) { fallbackMath(root); return; }
-  if (!mathReady || !window.MathJax || !MathJax.typesetPromise) { pendingRoot = root; return; }
-  if (!force && root.dataset && root.dataset.mathDone === '1') return;
-  if (root.dataset) root.dataset.mathDone = '1';
-  MathJax.typesetPromise([root]).catch(e => console.warn('[mathjax]', e));
+  if (!mathReady || !window.MathJax || !MathJax.typesetPromise) return; // ready 事件会整页兜底
+  queueTypeset(root);
 };
 function tex2txt(s) {
   let o = s;
@@ -57,7 +78,7 @@ setTimeout(() => {
     console.warn('[math] MathJax 未能加载，已切换为纯文本公式显示');
     fallbackMath(document.body);
   }
-}, 6000);
+}, 8000);
 
 /* ---------- 通用 UI ---------- */
 function toast(msg) {
@@ -437,7 +458,7 @@ function render() {
   else if (path === 'plan') html = viewPlan();
   else if (path === 'practice') { main.innerHTML = '<div class="wrap"></div>'; renderSidebar('practice'); window.QuizApp.mount(main, params); return; }
   else html = viewHome();
-  main.innerHTML = html;
+  main.innerHTML = window.safeMathHtml(html);
   afterRender(path);
 }
 

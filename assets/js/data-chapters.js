@@ -23,7 +23,7 @@ window.CHAPTERS.push({
     {
       id: 's1-1', title: '映射、函数与初等函数', blocks: [
         P(T`设 \(D\subset\mathbb{R}\) 是非空数集，若对每个 \(x\in D\)，按某法则 \(f\) 都有唯一确定的 \(y\) 与之对应，则称 \(f\) 为定义在 \(D\) 上的<strong>函数</strong>，记作 \(y=f(x)\)。定义域 \(D\) 与对应法则 \(f\) 是函数的两要素——两个函数相同，必须两者都相同。`),
-        DEF('函数的四种特性', T`<strong>有界性</strong>：\(\exists M>0,\ |f(x)|\le M\)；<strong>单调性</strong>：\(x_1<x_2\Rightarrow f(x_1)<f(x_2)\)（或反向）；<strong>奇偶性</strong>：\(f(-x)=-f(x)\) 为奇函数，\(f(-x)=f(x)\) 为偶函数；<strong>周期性</strong>：\(\exists T>0,\ f(x+T)=f(x)\)。`),
+        DEF('函数的四种特性', T`<strong>有界性</strong>：\(\exists M\gt 0,\ |f(x)|\le M\)；<strong>单调性</strong>：\(x_1\lt x_2\Rightarrow f(x_1)\lt f(x_2)\)（或反向）；<strong>奇偶性</strong>：\(f(-x)=-f(x)\) 为奇函数，\(f(-x)=f(x)\) 为偶函数；<strong>周期性</strong>：\(\exists T\gt 0,\ f(x+T)=f(x)\)。`),
         P(T`基本初等函数共五类：幂函数 \(x^\mu\)、指数函数 \(a^x\)、对数函数 \(\log_a x\)、三角函数、反三角函数。由常数与基本初等函数经<strong>有限次四则运算和有限次复合</strong>得到、且能用一个式子表示的函数，称为<strong>初等函数</strong>。初等函数在其定义区间内连续，这是后面所有计算的基石。`),
         F('常用恒等变形', T`\[ a^x=e^{x\ln a},\quad \log_a b=\frac{\ln b}{\ln a},\quad \sin x=\frac{e^{ix}-e^{-ix}}{2i},\quad 1+\tan^2 x=\sec^2 x \]`),
         TIP(T`分段函数一般不是初等函数（如符号函数、取整函数），但在分段点处必须单独讨论连续性与可导性。`),
@@ -32,9 +32,9 @@ window.CHAPTERS.push({
     },
     {
       id: 's1-2', title: '数列的极限', blocks: [
-        DEF('数列极限（ε-N 定义）', T`设 \(\{x_n\}\) 为数列，\(a\) 为常数。若 \(\forall\varepsilon>0,\ \exists N\in\mathbb{N}^+\)，当 \(n>N\) 时恒有 \(|x_n-a|<\varepsilon\)，则称 \(\{x_n\}\) 收敛于 \(a\)，记作 \(\lim\limits_{n\to\infty}x_n=a\)。`),
+        DEF('数列极限（ε-N 定义）', T`设 \(\{x_n\}\) 为数列，\(a\) 为常数。若 \(\forall\varepsilon\gt 0,\ \exists N\in\mathbb{N}^+\)，当 \(n\gt N\) 时恒有 \(|x_n-a|\lt \varepsilon\)，则称 \(\{x_n\}\) 收敛于 \(a\)，记作 \(\lim\limits_{n\to\infty}x_n=a\)。`),
         P(T`这个定义的几何含义是：无论把 \(a\) 的邻域 \((a-\varepsilon,a+\varepsilon)\) 取得多窄，数列从某一项起<strong>全部</strong>落进去，落在外面的至多只有有限项。注意 \(N\) 依赖于 \(\varepsilon\)，但不需要找最小的 \(N\)。`),
-        THM('收敛数列的基本性质', T`① <strong>唯一性</strong>：极限若存在必唯一；② <strong>有界性</strong>：收敛数列必有界；③ <strong>保号性</strong>：若 \(\lim x_n=a>0\)，则 \(n\) 充分大时 \(x_n>0\)；④ 收敛数列的任何子列收敛于同一极限。`),
+        THM('收敛数列的基本性质', T`① <strong>唯一性</strong>：极限若存在必唯一；② <strong>有界性</strong>：收敛数列必有界；③ <strong>保号性</strong>：若 \(\lim x_n=a\gt 0\)，则 \(n\) 充分大时 \(x_n\gt 0\)；④ 收敛数列的任何子列收敛于同一极限。`),
         THM('极限存在准则', T`<strong>夹逼准则</strong>：若 \(y_n\le x_n\le z_n\) 且 \(\lim y_n=\lim z_n=a\)，则 \(\lim x_n=a\)。<br><strong>单调有界准则</strong>：单调增加有上界（或单调减少有下界）的数列必收敛。`),
         EX(T`求 \(\lim\limits_{n\to\infty}\left(\frac{1}{\sqrt{n^2+1}}+\frac{1}{\sqrt{n^2+2}}+\cdots+\frac{1}{\sqrt{n^2+n}}\right)\)。`,
           T`和式共有 \(n\) 项，最大项 \(\frac{1}{\sqrt{n^2+1}}\)，最小项 \(\frac{1}{\sqrt{n^2+n}}\)，故 \(\frac{n}{\sqrt{n^2+n}}\le S_n\le \frac{n}{\sqrt{n^2+1}}\)。两端极限都是 \(1\)，由夹逼准则得原式 \(=1\)。<br><em>要点</em>：项数随 \(n\) 变化时不能逐项取极限，必须先放缩成整体。`),
@@ -43,7 +43,7 @@ window.CHAPTERS.push({
     },
     {
       id: 's1-3', title: '函数的极限、无穷小与无穷大', blocks: [
-        DEF('函数极限（ε-δ 定义）', T`\(\lim\limits_{x\to x_0}f(x)=A\) 是指：\(\forall\varepsilon>0,\ \exists\delta>0\)，当 \(0<|x-x_0|<\delta\) 时恒有 \(|f(x)-A|<\varepsilon\)。条件中的 \(0<|x-x_0|\) 说明<strong>极限与 \(f(x_0)\) 的取值无关</strong>，甚至不要求 \(f\) 在 \(x_0\) 有定义。`),
+        DEF('函数极限（ε-δ 定义）', T`\(\lim\limits_{x\to x_0}f(x)=A\) 是指：\(\forall\varepsilon\gt 0,\ \exists\delta\gt 0\)，当 \(0\lt |x-x_0|\lt \delta\) 时恒有 \(|f(x)-A|\lt \varepsilon\)。条件中的 \(0\lt |x-x_0|\) 说明<strong>极限与 \(f(x_0)\) 的取值无关</strong>，甚至不要求 \(f\) 在 \(x_0\) 有定义。`),
         P(T`左极限 \(f(x_0^-)\) 与右极限 \(f(x_0^+)\) 分别只从一侧趋近。<strong>极限存在的充要条件</strong>是左右极限都存在且相等。分段函数在分段点、含 \(|x|\)、\(\arctan\frac{1}{x}\)、\(e^{1/x}\) 的表达式，都必须分左右讨论。`),
         F('无穷小与无穷大', T`\[ \lim f(x)=0\Rightarrow f \text{ 为无穷小};\qquad \lim f(x)=\infty\Rightarrow f \text{ 为无穷大} \]`),
         TIP(T`在同一极限过程中，若 \(f\) 为无穷小且 \(f\neq0\)，则 \(\frac{1}{f}\) 为无穷大；无穷大一定无界，但无界不一定是无穷大（如 \(y=x\sin x\) 当 \(x\to\infty\)）。`),
@@ -70,7 +70,7 @@ window.CHAPTERS.push({
           T`<strong>第一类间断点</strong>：左右极限都存在。左右相等为<em>可去间断点</em>（补定义即可连续），不等为<em>跳跃间断点</em>。`,
           T`<strong>第二类间断点</strong>：左右极限至少一个不存在，如<em>无穷间断点</em> \(\frac1x\) 在 \(x=0\)、<em>振荡间断点</em> \(\sin\frac1x\) 在 \(x=0\)。`,
         ]),
-        THM('闭区间上连续函数的性质', T`<strong>最值定理</strong>：\([a,b]\) 上连续必取到最大、最小值；<strong>有界性定理</strong>：必有界；<strong>零点定理</strong>：若 \(f(a)f(b)<0\)，则 \(\exists\xi\in(a,b)\) 使 \(f(\xi)=0\)；<strong>介值定理</strong>：能取到介于端点值之间的一切值。`),
+        THM('闭区间上连续函数的性质', T`<strong>最值定理</strong>：\([a,b]\) 上连续必取到最大、最小值；<strong>有界性定理</strong>：必有界；<strong>零点定理</strong>：若 \(f(a)f(b)\lt 0\)，则 \(\exists\xi\in(a,b)\) 使 \(f(\xi)=0\)；<strong>介值定理</strong>：能取到介于端点值之间的一切值。`),
         TIP(T`零点定理是证明方程根存在的主力工具：构造 \(F(x)=f(x)-x\) 或原函数，再验证端点异号。注意它只保证「至少有一个」，唯一性要靠单调性。`),
       ]
     }
@@ -104,7 +104,7 @@ window.CHAPTERS.push({
         F('反函数与复合函数（链式法则）', T`\[ \frac{dy}{dx}=\frac{1}{dx/dy},\qquad \frac{dy}{dx}=\frac{dy}{du}\cdot\frac{du}{dx} \]`),
         F('基本导数表', T`\[ (x^\mu)'=\mu x^{\mu-1},\ (e^x)'=e^x,\ (a^x)'=a^x\ln a,\ (\ln x)'=\frac1x \] \[ (\sin x)'=\cos x,\ (\cos x)'=-\sin x,\ (\tan x)'=\sec^2 x,\ (\cot x)'=-\csc^2 x \] \[ (\arcsin x)'=\frac{1}{\sqrt{1-x^2}},\ (\arctan x)'=\frac{1}{1+x^2},\ (\sec x)'=\sec x\tan x \]`),
         TIP(T`链式法则是出错率最高的地方：对 \(\sin(2x^3)\) 求导要逐层剥洋葱，得 \(\cos(2x^3)\cdot6x^2\)。复合层数多时，建议先设中间变量写清楚层次。`),
-        EX(T`求 \(y=x^x\ (x>0)\) 的导数。`,
+        EX(T`求 \(y=x^x\ (x\gt 0)\) 的导数。`,
           T`既非幂函数也非指数函数，用<strong>对数求导法</strong>：\(\ln y=x\ln x\)，两边对 \(x\) 求导得 \(\frac{y'}{y}=\ln x+1\)，故 \(y'=x^x(\ln x+1)\)。<br>也可写成 \(y=e^{x\ln x}\) 再链式求导。`),
       ]
     },
@@ -143,7 +143,7 @@ window.CHAPTERS.push({
     {
       id: 's3-1', title: '三大微分中值定理', blocks: [
         THM('罗尔定理', T`\(f\in C[a,b]\)，在 \((a,b)\) 可导，且 \(f(a)=f(b)\)，则 \(\exists\xi\in(a,b)\) 使 \(f'(\xi)=0\)。`, T`几何意义：两端等高的光滑曲线上至少有一点切线水平。`),
-        THM('拉格朗日中值定理', T`\(f\in C[a,b]\) 且在 \((a,b)\) 可导，则 \(\exists\xi\in(a,b)\) 使 \[ f(b)-f(a)=f'(\xi)(b-a). \]`, T`这是最常用的一条；有限增量公式 \(f(x+\Delta x)-f(x)=f'(x+\theta\Delta x)\Delta x\ (0<\theta<1)\) 也由此而来。`),
+        THM('拉格朗日中值定理', T`\(f\in C[a,b]\) 且在 \((a,b)\) 可导，则 \(\exists\xi\in(a,b)\) 使 \[ f(b)-f(a)=f'(\xi)(b-a). \]`, T`这是最常用的一条；有限增量公式 \(f(x+\Delta x)-f(x)=f'(x+\theta\Delta x)\Delta x\ (0\lt \theta\lt 1)\) 也由此而来。`),
         THM('柯西中值定理', T`\(f,F\in C[a,b]\)，在 \((a,b)\) 可导且 \(F'(x)\neq0\)，则 \(\exists\xi\in(a,b)\) 使 \[ \frac{f(b)-f(a)}{F(b)-F(a)}=\frac{f'(\xi)}{F'(\xi)}. \]`, T`取 \(F(x)=x\) 即退化为拉格朗日定理；它是证明洛必达法则的理论依据。`),
         TIP(T`中值定理证明题的通用套路：由结论倒推需要构造的<strong>辅助函数</strong>。欲证 \(f'(\xi)+\lambda f(\xi)=0\)，常构造 \(F(x)=e^{\lambda x}f(x)\)；欲证含 \(\frac{f'(\xi)}{g'(\xi)}\)，用柯西定理。`),
         VIS('mvt', '拉格朗日中值定理：拖动 c 寻找与割线平行的切线', '拖动滑块，让切线斜率等于割线斜率'),
@@ -162,9 +162,9 @@ window.CHAPTERS.push({
     },
     {
       id: 's3-3', title: '单调性、凹凸性、极值与最值', blocks: [
-        THM('单调性判别', T`在 \((a,b)\) 内 \(f'(x)>0\Rightarrow f\) 单调增加；\(f'(x)<0\Rightarrow\) 单调减少。驻点（\(f'=0\)）与不可导点是单调区间的分界候选。`),
-        DEF('凹凸性与拐点', T`若 \(f''>0\) 则曲线是<strong>凹</strong>的（concave up，开口向上，切线在曲线下方）；\(f''<0\) 为<strong>凸</strong>的。凹凸性改变的点称为<strong>拐点</strong>，注意拐点是曲线上的点 \((x_0,f(x_0))\)。`),
-        THM('极值判别', T`<strong>第一充分条件</strong>：\(f'\) 在 \(x_0\) 两侧变号则有极值（左正右负为极大）。<br><strong>第二充分条件</strong>：\(f'(x_0)=0\) 且 \(f''(x_0)\neq0\)，则 \(f''<0\) 取极大值、\(f''>0\) 取极小值；\(f''=0\) 时失效，需回退一阶判别。`),
+        THM('单调性判别', T`在 \((a,b)\) 内 \(f'(x)\gt 0\Rightarrow f\) 单调增加；\(f'(x)\lt 0\Rightarrow\) 单调减少。驻点（\(f'=0\)）与不可导点是单调区间的分界候选。`),
+        DEF('凹凸性与拐点', T`若 \(f''\gt 0\) 则曲线是<strong>凹</strong>的（concave up，开口向上，切线在曲线下方）；\(f''\lt 0\) 为<strong>凸</strong>的。凹凸性改变的点称为<strong>拐点</strong>，注意拐点是曲线上的点 \((x_0,f(x_0))\)。`),
+        THM('极值判别', T`<strong>第一充分条件</strong>：\(f'\) 在 \(x_0\) 两侧变号则有极值（左正右负为极大）。<br><strong>第二充分条件</strong>：\(f'(x_0)=0\) 且 \(f''(x_0)\neq0\)，则 \(f''\lt 0\) 取极大值、\(f''\gt 0\) 取极小值；\(f''=0\) 时失效，需回退一阶判别。`),
         TIP(T`闭区间 \([a,b]\) 上求最值：找出区间内全部驻点与不可导点，把它们与两个端点的函数值一起比较，最大的即最大值。不要漏掉端点！`),
         VIS('shape', '导数符号与曲线形状：实时查看 f、f′、f″ 的对应', '切换函数，观察驻点与拐点位置'),
       ]
@@ -254,7 +254,7 @@ window.CHAPTERS.push({
         F('对称性公式', T`\[ \int_{-a}^{a}f(x)\,dx=\begin{cases}2\int_0^a f(x)\,dx,&f\ \text{偶}\\0,&f\ \text{奇}\end{cases},\qquad \int_0^{\pi/2}\sin^n x\,dx=\int_0^{\pi/2}\cos^n x\,dx \]`),
         F('华里士（点火）公式', T`\[ I_n=\int_0^{\pi/2}\sin^n x\,dx=\frac{n-1}{n}I_{n-2},\quad I_1=1,\ I_0=\frac\pi2 \]`),
         DEF('反常积分', T`无穷限：\(\int_a^{+\infty}f=\lim\limits_{t\to+\infty}\int_a^t f\)；无界函数（瑕积分）：若 \(f\) 在 \(a\) 附近无界，则 \(\int_a^b f=\lim\limits_{\varepsilon\to0^+}\int_{a+\varepsilon}^b f\)。极限存在称<strong>收敛</strong>，否则发散。`),
-        F('p 积分判敛（重要基准）', T`\[ \int_1^{+\infty}\frac{dx}{x^p}:\ p>1\ \text{收敛},\ p\le1\ \text{发散};\qquad \int_0^1\frac{dx}{x^q}:\ q<1\ \text{收敛},\ q\ge1\ \text{发散} \]`),
+        F('p 积分判敛（重要基准）', T`\[ \int_1^{+\infty}\frac{dx}{x^p}:\ p\gt 1\ \text{收敛},\ p\le1\ \text{发散};\qquad \int_0^1\frac{dx}{x^q}:\ q\lt 1\ \text{收敛},\ q\ge1\ \text{发散} \]`),
         WARN(T`\(\int_{-\infty}^{+\infty}\frac{x}{1+x^2}dx\) 发散（两个单侧积分各自发散），虽然对称区间上「看起来」应该抵消，但柯西主值为 0 与反常积分收敛是两回事。`),
       ]
     }

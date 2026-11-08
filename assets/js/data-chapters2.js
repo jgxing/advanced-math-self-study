@@ -13,7 +13,7 @@ window.CHAPTERS.push({
         F('可分离变量方程', T`\[ g(y)\,dy=f(x)\,dx\ \Longrightarrow\ \int g(y)\,dy=\int f(x)\,dx+C \]`),
         F('齐次方程', T`\[ \frac{dy}{dx}=\varphi\!\left(\frac yx\right)\ \xrightarrow{\ u=y/x\ }\ x\frac{du}{dx}=\varphi(u)-u \]`),
         THM('一阶线性方程与常数变易法', T`\[ y'+P(x)y=Q(x)\ \Longrightarrow\ y=e^{-\int P dx}\left(\int Q\, e^{\int P dx}dx+C\right) \]`, T`齐次解 \(Ce^{-\int Pdx}\) 中的常数「变易」为 \(C(x)\) 代入即可导出此公式。伯努利方程 \(y'+P(x)y=Q(x)y^n\) 令 \(z=y^{1-n}\) 化为线性方程。`),
-        EX(T`求 \(xy'+y=x\ln x\ (x>0)\) 的通解。`,
+        EX(T`求 \(xy'+y=x\ln x\ (x\gt 0)\) 的通解。`,
           T`标准化为 \(y'+\frac1x y=\ln x\)，\(\int P dx=\ln x\)，故 \(y=\frac1x\left(\int x\ln x\,dx+C\right)=\frac1x\left(\frac{x^2}{2}\ln x-\frac{x^2}{4}+C\right)=\frac x2\ln x-\frac x4+\frac Cx\)。<br>也可直接观察左端是 \((xy)'\)，一次积分即得。`),
         VIS('slopefield', '方向场与积分曲线：拖动初值点，观察解曲线的走向', '点击或拖动画布选择初始条件'),
       ]
@@ -31,7 +31,7 @@ window.CHAPTERS.push({
     {
       id: 's7-3', title: '二阶常系数线性方程', blocks: [
         THM('解的结构', T`若 \(y_1,y_2\) 是齐次方程 \(y''+py'+qy=0\) 的两个<strong>线性无关</strong>解，则通解为 \(y=C_1y_1+C_2y_2\)。非齐次方程的通解 \(=\) 对应齐次通解 \(Y\) \(+\) 非齐次的一个特解 \(y^*\)。`),
-        F('特征方程法', T`\[ r^2+pr+q=0,\quad \Delta=p^2-4q \] \[ \Delta>0:\ y=C_1e^{r_1x}+C_2e^{r_2x};\quad \Delta=0:\ y=(C_1+C_2x)e^{rx} \] \[ \Delta<0\ (r=\alpha\pm i\beta):\ y=e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x) \]`),
+        F('特征方程法', T`\[ r^2+pr+q=0,\quad \Delta=p^2-4q \] \[ \Delta\gt 0:\ y=C_1e^{r_1x}+C_2e^{r_2x};\quad \Delta=0:\ y=(C_1+C_2x)e^{rx} \] \[ \Delta\lt 0\ (r=\alpha\pm i\beta):\ y=e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x) \]`),
         F('非齐次特解形式（待定系数法）', T`\[ f(x)=e^{\lambda x}P_m(x):\quad y^*=x^k e^{\lambda x}Q_m(x) \] \[ f(x)=e^{\alpha x}\left[P_l\cos\beta x+P_n\sin\beta x\right]:\quad y^*=x^k e^{\alpha x}\left[R_m\cos\beta x+S_m\sin\beta x\right] \]`),
         TIP(T`\(k\) 的取法：\(\lambda\)（或 \(\alpha+i\beta\)）不是特征根取 \(0\)，是单根取 \(1\)，是重根取 \(2\)。\(m=\max(l,n)\)，且正弦余弦两项必须<strong>成对设出</strong>，即使 \(f\) 中只出现其中之一。`),
         EX(T`求 \(y''-3y'+2y=xe^{x}\) 的通解。`,
@@ -102,10 +102,10 @@ window.CHAPTERS.push({
     {
       id: 's9-3', title: '方向导数、梯度与极值', blocks: [
         F('方向导数与梯度', T`\[ \frac{\partial f}{\partial \vec l}=f_x\cos\alpha+f_y\cos\beta=\nabla f\cdot\vec l^0,\qquad \nabla f=(f_x,f_y,f_z) \] \[ \max_{\vec l}\frac{\partial f}{\partial\vec l}=|\nabla f|\ (\text{沿梯度方向}),\quad \min=-|\nabla f| \]`, T`梯度方向是函数增长最快的方向，且垂直于等值线（等值面）。`),
-        THM('无条件极值', T`驻点满足 \(f_x=f_y=0\)。记 \(A=f_{xx},B=f_{xy},C=f_{yy}\)，\(\Delta=AC-B^2\)：\(\Delta>0\) 且 \(A<0\) 取极大、\(A>0\) 取极小；\(\Delta<0\) 不是极值（鞍点）；\(\Delta=0\) 需另判。`),
+        THM('无条件极值', T`驻点满足 \(f_x=f_y=0\)。记 \(A=f_{xx},B=f_{xy},C=f_{yy}\)，\(\Delta=AC-B^2\)：\(\Delta\gt 0\) 且 \(A\lt 0\) 取极大、\(A\gt 0\) 取极小；\(\Delta\lt 0\) 不是极值（鞍点）；\(\Delta=0\) 需另判。`),
         THM('拉格朗日乘数法', T`求 \(z=f(x,y)\) 在约束 \(\varphi(x,y)=0\) 下的极值，构造 \[ L(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y), \] 解方程组 \(L_x=L_y=L_\lambda=0\)，再比较候选点。`),
         EX(T`求表面积为 \(a^2\) 的长方体的最大体积。`,
-          T`设长宽高 \(x,y,z>0\)，约束 \(2(xy+yz+zx)=a^2\)。取 \(L=xyz+\lambda(2xy+2yz+2zx-a^2)\)。由 \(L_x=yz+2\lambda(y+z)=0\) 等三式相减可得 \(x=y=z\)，代入约束 \(6x^2=a^2\)，故 \(x=\frac{a}{\sqrt6}\)，\(V_{\max}=\frac{a^3}{6\sqrt6}\)。`),
+          T`设长宽高 \(x,y,z\gt 0\)，约束 \(2(xy+yz+zx)=a^2\)。取 \(L=xyz+\lambda(2xy+2yz+2zx-a^2)\)。由 \(L_x=yz+2\lambda(y+z)=0\) 等三式相减可得 \(x=y=z\)，代入约束 \(6x^2=a^2\)，故 \(x=\frac{a}{\sqrt6}\)，\(V_{\max}=\frac{a^3}{6\sqrt6}\)。`),
         VIS('gradient', '梯度场与等值线：观察梯度如何垂直于等高线并指向增长方向', '切换函数，点击画布查看该点梯度'),
       ]
     }
@@ -157,7 +157,7 @@ window.CHAPTERS.push({
   sections: [
     {
       id: 's11-1', title: '曲线积分与格林公式', blocks: [
-        F('第一型（对弧长）', T`\[ \int_L f(x,y)\,ds=\int_\alpha^\beta f(x(t),y(t))\sqrt{x'^2(t)+y'^2(t)}\,dt \]`, T`与方向无关，\(ds>0\)，下限小于上限。`),
+        F('第一型（对弧长）', T`\[ \int_L f(x,y)\,ds=\int_\alpha^\beta f(x(t),y(t))\sqrt{x'^2(t)+y'^2(t)}\,dt \]`, T`与方向无关，\(ds\gt 0\)，下限小于上限。`),
         F('第二型（对坐标）', T`\[ \int_L P\,dx+Q\,dy=\int_\alpha^\beta\left[P(x(t),y(t))x'(t)+Q(x(t),y(t))y'(t)\right]dt \]`, T`与路径方向有关，反向变号；两类积分的关系为 \(\int_L Pdx+Qdy=\int_L(P\cos\alpha+Q\cos\beta)\,ds\)。`),
         THM('格林公式', T`设闭区域 \(D\) 由分段光滑正向曲线 \(L\) 围成，\(P,Q\in C^1(D)\)： \[ \oint_L P\,dx+Q\,dy=\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dx\,dy. \]`, T`<strong>正向</strong>指沿曲线前进时区域始终在左侧（外边界逆时针）。`),
         THM('路径无关的四个等价条件', T`在单连通域 \(D\) 内，以下四条等价：① \(\int_L Pdx+Qdy\) 与路径无关；② 沿 \(D\) 内任意闭曲线积分为 \(0\)；③ \(\frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x}\) 处处成立；④ 存在 \(u(x,y)\) 使 \(du=Pdx+Qdy\)，且 \[ u(x,y)=\int_{(x_0,y_0)}^{(x,y)}Pdx+Qdy. \]`),
@@ -191,8 +191,8 @@ window.CHAPTERS.push({
       id: 's12-1', title: '常数项级数的概念与审敛法', blocks: [
         DEF('收敛定义', T`\[ \sum_{n=1}^{\infty}u_n=\lim_{n\to\infty}S_n,\qquad S_n=u_1+u_2+\cdots+u_n \]`),
         THM('基本性质', T`① 收敛<strong>必要</strong>条件 \(\lim u_n=0\)（反之不成立，如调和级数）；② \(\sum ku_n\) 与 \(\sum u_n\) 同敛散（\(k\neq0\)）；③ 收敛级数可逐项相加减；④ 收敛级数加括号后仍收敛；⑤ <strong>收敛级数任意加括号</strong>不改变和，但发散级数加括号可能「变收敛」。`),
-        F('正项级数审敛法', T`\[ \text{比较：}\ u_n\le v_n,\ \sum v_n\ \text{收敛}\Rightarrow\sum u_n\ \text{收敛};\qquad \lim\frac{u_n}{v_n}=l\in(0,\infty)\ \text{则同敛散} \] \[ \text{比值：}\ \lim\frac{u_{n+1}}{u_n}=\rho,\quad \text{根值：}\ \lim\sqrt[n]{u_n}=\rho,\qquad \rho<1\ \text{收敛},\ \rho>1\ \text{发散} \]`),
-        F('三个基准级数', T`\[ \sum_{n=1}^\infty\frac1{n^p}:\ p>1\ \text{收敛};\qquad \sum q^n:\ |q|<1\ \text{收敛};\qquad \sum\frac1n\ \text{发散（调和级数）} \]`),
+        F('正项级数审敛法', T`\[ \text{比较：}\ u_n\le v_n,\ \sum v_n\ \text{收敛}\Rightarrow\sum u_n\ \text{收敛};\qquad \lim\frac{u_n}{v_n}=l\in(0,\infty)\ \text{则同敛散} \] \[ \text{比值：}\ \lim\frac{u_{n+1}}{u_n}=\rho,\quad \text{根值：}\ \lim\sqrt[n]{u_n}=\rho,\qquad \rho\lt 1\ \text{收敛},\ \rho\gt 1\ \text{发散} \]`),
+        F('三个基准级数', T`\[ \sum_{n=1}^\infty\frac1{n^p}:\ p\gt 1\ \text{收敛};\qquad \sum q^n:\ |q|\lt 1\ \text{收敛};\qquad \sum\frac1n\ \text{发散（调和级数）} \]`),
         THM('交错级数（莱布尼茨判别法）', T`若 \(u_n\downarrow0\)，则 \(\sum(-1)^{n-1}u_n\) 收敛，且余项 \(|r_n|\le u_{n+1}\)。`),
         DEF('绝对收敛与条件收敛', T`\(\sum|u_n|\) 收敛称<strong>绝对收敛</strong>；\(\sum u_n\) 收敛但 \(\sum|u_n|\) 发散称<strong>条件收敛</strong>。绝对收敛级数可任意重排且和不变；条件收敛级数重排后可以得到任意和（黎曼重排定理）。`),
         VIS('series', '部分和数列：切换级数，观察收敛与发散的差异', '拖动 n，比较部分和、通项与基准级数'),
@@ -200,12 +200,12 @@ window.CHAPTERS.push({
     },
     {
       id: 's12-2', title: '幂级数与函数展开', blocks: [
-        F('收敛半径', T`\[ \rho=\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|,\quad R=\frac1\rho,\qquad \sum_{n=0}^{\infty}a_nx^n\ \text{在}\ |x|<R\ \text{绝对收敛} \]`),
+        F('收敛半径', T`\[ \rho=\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|,\quad R=\frac1\rho,\qquad \sum_{n=0}^{\infty}a_nx^n\ \text{在}\ |x|\lt R\ \text{绝对收敛} \]`),
         TIP(T`求收敛域的三步：① 求 \(R\)；② 单独讨论端点 \(x=\pm R\)（代回后用常数项级数审敛法）；③ 写出收敛域。缺项级数（如只含偶次幂）不能直接用系数比，应对整个项用比值法再解 \(|x|\) 的范围。`),
         THM('和函数的分析性质', T`幂级数在收敛区间内可<strong>逐项求导、逐项积分</strong>，且收敛半径不变： \[ \left(\sum a_nx^n\right)'=\sum na_nx^{n-1},\qquad \int_0^x\sum a_nt^n dt=\sum\frac{a_n}{n+1}x^{n+1}. \]`),
-        F('常用展开式', T`\[ \frac1{1-x}=\sum_{n=0}^\infty x^n\ (|x|<1),\qquad e^x=\sum_{n=0}^\infty\frac{x^n}{n!},\qquad \sin x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{(2n+1)!} \] \[ \ln(1+x)=\sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n}\ (-1<x\le1),\qquad \arctan x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{2n+1} \]`),
+        F('常用展开式', T`\[ \frac1{1-x}=\sum_{n=0}^\infty x^n\ (|x|\lt 1),\qquad e^x=\sum_{n=0}^\infty\frac{x^n}{n!},\qquad \sin x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{(2n+1)!} \] \[ \ln(1+x)=\sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n}\ (-1\lt x\le1),\qquad \arctan x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{2n+1} \]`),
         EX(T`求 \(\sum\limits_{n=1}^\infty\frac{n}{2^n}\) 的和。`,
-          T`构造 \(S(x)=\sum n x^n=x\sum n x^{n-1}=x\left(\sum x^n\right)'=x\left(\frac{x}{1-x}\right)'=\frac{x}{(1-x)^2}\)（\(|x|<1\)）。取 \(x=\frac12\)，得 \(S=2\)。<br><em>通法</em>：先逐项积分或求导把系数 \(n\) 消掉，再还原。`),
+          T`构造 \(S(x)=\sum n x^n=x\sum n x^{n-1}=x\left(\sum x^n\right)'=x\left(\frac{x}{1-x}\right)'=\frac{x}{(1-x)^2}\)（\(|x|\lt 1\)）。取 \(x=\frac12\)，得 \(S=2\)。<br><em>通法</em>：先逐项积分或求导把系数 \(n\) 消掉，再还原。`),
       ]
     },
     {
