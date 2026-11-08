@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="数形 · 高等数学交互式自学平台：知识讲解、动态演示、即时练习与进度追踪">
+<title>数形 · 高等数学交互式自学平台</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: true,
+    packages: {'[+]': ['ams']}
+  },
+  svg: { fontCache: 'global', scale: 1 },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+  startup: {
+    typeset: false,
+    ready: function () {
+      MathJax.startup.defaultReady();
+      window.dispatchEvent(new Event('mathjax-ready'));
+    }
+  }
+};
+</script>
+<script defer src="vendor/mathjax/tex-svg.js"></script>
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="topbar-brand">
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="展开导航">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+      </button>
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="34" height="34">
+          <rect width="40" height="40" rx="11" fill="#4257d6"/>
+          <path d="M7 27c5 0 6-15 12-15s7 15 14 15" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <circle cx="19" cy="12" r="2.4" fill="#ffd166"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <strong>数形</strong>
+        <span>高等数学交互式自学平台</span>
+      </div>
+    </div>
+
+    <div class="topbar-search">
+      <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><path d="m16.5 16.5 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="globalSearch" type="search" placeholder="搜索知识点、定理、公式…  按 / 聚焦" autocomplete="off">
+      <kbd>/</kbd>
+      <div class="search-results" id="searchResults" hidden></div>
+    </div>
+
+    <div class="topbar-actions">
+      <div class="streak-chip" id="streakChip" title="连续学习天数">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 3c1 4-3 5-3 9a3 3 0 0 0 6 0c0-1-.4-2-1-3 3 1.5 4 3.6 4 6a6 6 0 0 1-12 0c0-4 4-6 6-12Z" fill="currentColor"/></svg>
+        <span id="streakText">0 天</span>
+      </div>
+      <button class="icon-btn" id="themeToggle" title="切换主题" aria-label="切换主题">
+        <svg class="ico-sun" viewBox="0 0 24 24" width="19" height="19"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" width="19" height="19"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="avatar-btn" id="profileBtn" title="学习档案">学</button>
+    </div>
+  </header>
+
+  <aside class="sidebar" id="sidebar" aria-label="主导航">
+    <nav id="sidebarNav"></nav>
+    <div class="sidebar-foot">
+      <div class="progress-mini">
+        <div class="progress-mini-top"><span>总体学习进度</span><strong id="sideProgressText">0%</strong></div>
+        <div class="bar"><i id="sideProgressBar" style="width:0%"></i></div>
+      </div>
+      <p class="side-note">数据仅保存在本机浏览器</p>
+    </div>
+  </aside>
+
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+  <main class="main" id="main" tabindex="-1"></main>
+
+  <div class="toast-host" id="toastHost" aria-live="polite"></div>
+  <div class="modal-host" id="modalHost" hidden></div>
+</div>
+
+<script src="assets/js/data-chapters.js"></script>
+<script src="assets/js/data-chapters2.js"></script>
+<script src="assets/js/data-quiz.js"></script>
+<script src="assets/js/visuals.js"></script>
+<script src="assets/js/visuals2.js"></script>
+<script src="assets/js/quiz.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
